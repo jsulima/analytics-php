@@ -177,28 +177,7 @@ class Segment_Client {
     if (!isset($msg["timestamp"])) $msg["timestamp"] = null;
     $msg["context"] = array_merge($msg["context"], $this->getContext());
     $msg["timestamp"] = $this->formatTime($msg["timestamp"]);
-    $msg["messageId"] = self::messageId();
     return $msg;
-  }
-
-  /**
-   * Generate a random messageId.
-   *
-   * https://gist.github.com/dahnielson/508447#file-uuid-php-L74
-   *
-   * @return string
-   */
-
-  private static function messageId(){
-    return sprintf("%04x%04x-%04x-%04x-%04x-%04x%04x%04x"
-      , mt_rand(0, 0xffff)
-      , mt_rand(0, 0xffff)
-      , mt_rand(0, 0xffff)
-      , mt_rand(0, 0x0fff) | 0x4000
-      , mt_rand(0, 0x3fff) | 0x8000
-      , mt_rand(0, 0xffff)
-      , mt_rand(0, 0xffff)
-      , mt_rand(0, 0xffff));
   }
 
   /**
